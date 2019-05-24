@@ -23,6 +23,10 @@ var eradicateRetry = setInterval(function() {
 
 	removeNewsFeed();
 
+	// get rid of notification jewel
+	var notificationsJewel = document.getElementById('fbNotificationsJewel');
+	notificationsJewel.style.display = "none";
+
 	// Add News Feed Eradicator quote/info panel
 	if (!isAlreadyInjected()) {
 		injectUI(streamContainer);
