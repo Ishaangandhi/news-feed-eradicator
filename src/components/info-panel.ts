@@ -2,6 +2,7 @@ import { h } from 'snabbdom/h';
 
 import {
 	toggleShowQuotes,
+	toggleShowCounts,
 	hideInfoPanel,
 	resetHiddenQuotes,
 } from '../store/actions';

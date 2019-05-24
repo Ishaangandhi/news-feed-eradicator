@@ -1,5 +1,6 @@
 import handleError from './handle-error';
 import { createStore } from '../store';
+import { incrementCount, zeroCount, logLogin } from '../store/actions';
 import NewsFeedEradicator from '../components/index';
 
 import { init } from 'snabbdom';
@@ -28,10 +29,19 @@ export default function injectUI(streamContainer: Element) {
 		.then(store => {
 			const render = () => {
 				const newVnode = h('div#nfe-container', [NewsFeedEradicator(store)]);
-
 				patch(vnode, newVnode);
 				vnode = newVnode;
 			};
+
+			// increment the visit count every time we load NFE
+			var state = store.getState();
+			var d = new Date();
+			if (d.getDate() != state.lastLogin) {
+				// its a new day, reset the clock
+				store.dispatch(zeroCount());
+				store.dispatch(logLogin());
+			}
+			store.dispatch(incrementCount());
 
 			render();
 			store.subscribe(render);

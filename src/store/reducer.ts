@@ -12,6 +12,34 @@ function showQuotes(state = true, action) {
 	return state;
 }
 
+function showCounts(state = true, action) {
+	switch (action.type) {
+		case Actions.TOGGLE_SHOW_COUNTS:
+			return !state;
+	}
+	return state;
+}
+
+function visitCount(state = 0, action) {
+	switch (action.type) {
+		case Actions.INCREMENT_COUNT:
+			return state+1;
+		case Actions.ZERO_COUNT:
+			return 0;
+	}
+	return state;
+}
+
+function lastLogin(state = 0, action) {
+	switch (action.type) {
+		case Actions.LOG_LOGIN:
+			var d = new Date();
+			return d.getDate();
+	}
+	return state;
+}
+
+
 function builtinQuotesEnabled(state = true, action) {
 	switch (action.type) {
 		case Actions.TOGGLE_BUILTIN_QUOTES:
@@ -181,6 +209,9 @@ const error = (state: string = '', action) => {
 
 export interface IState {
 	showQuotes: boolean;
+	showCounts: boolean;
+	visitCount: number;
+	lastLogin: number;
 	builtinQuotesEnabled: boolean;
 	showInfoPanel: boolean;
 	featureIncrement: number;
@@ -198,6 +229,9 @@ export interface IState {
 
 export default combineReducers({
 	showQuotes,
+	showCounts,
+	visitCount,
+	lastLogin,
 	builtinQuotesEnabled,
 	showInfoPanel,
 	featureIncrement,

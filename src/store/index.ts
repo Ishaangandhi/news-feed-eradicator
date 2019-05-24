@@ -21,6 +21,9 @@ function saveSettings(state: IState) {
 		featureIncrement: state.featureIncrement,
 		hiddenBuiltinQuotes: state.hiddenBuiltinQuotes,
 		customQuotes: state.customQuotes,
+		showCounts: state.showCounts,
+		visitCount: state.visitCount,
+		lastLogin: state.lastLogin,
 	};
 
 	browser.saveSettings(data);

@@ -1,9 +1,10 @@
 import QuoteDisplay from './quote-display';
+import CountDisplay from './count-display';
 import InfoPanel from './info-panel';
 
 import { Store } from '../store';
 import { IState } from '../store/reducer';
-import { showInfoPanel } from '../store/actions';
+import { showInfoPanel, incrementCount } from '../store/actions';
 import { areNewFeaturesAvailable } from '../store/selectors';
 
 import { h } from 'snabbdom/h';
@@ -18,6 +19,7 @@ const NewsFeedEradicator = (store: Store) => {
 		? h('span.nfe-label.nfe-new-features', 'New Features!')
 		: null;
 
+	const countPanel = state.showCounts ? CountDisplay(store) : null;
 	const infoPanel = state.showInfoPanel ? InfoPanel(store) : null;
 
 	const onShowInfoPanel = () => store.dispatch(showInfoPanel());
@@ -27,7 +29,7 @@ const NewsFeedEradicator = (store: Store) => {
 	]);
 
 	// Entire app component
-	return h('div', [infoPanel, quoteDisplay, link]);
+	return h('div', [infoPanel, quoteDisplay, countPanel, link]);
 };
 
 export default NewsFeedEradicator;

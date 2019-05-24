@@ -11,6 +11,10 @@ enum ActionTypes {
 	ADD_QUOTE = <any>'ADD_QUOTE',
 	ADD_QUOTES_BULK = <any>'ADD_QUOTES_BULK',
 	RESET_HIDDEN_QUOTES = <any>'RESET_HIDDEN_QUOTES',
+	TOGGLE_SHOW_COUNTS = <any>'TOGGLE_SHOW_COUNTS',
+	INCREMENT_COUNT = <any>'INCREMENT_COUNT',
+	ZERO_COUNT = <any>'ZERO_COUNT',
+	LOG_LOGIN = <any>'LOG_LOGIN',
 }
 
 interface INFO_PANEL_SHOW {
@@ -81,6 +85,33 @@ export function toggleShowQuotes() {
 		type: ActionTypes.TOGGLE_SHOW_QUOTES,
 	};
 }
+
+export function toggleShowCounts() {
+	return {
+		type: ActionTypes.TOGGLE_SHOW_COUNTS,
+	};
+}
+
+export function incrementCount() {
+	return {
+		type: ActionTypes.INCREMENT_COUNT,
+	};
+}
+
+export function zeroCount() {
+	return {
+		type: ActionTypes.ZERO_COUNT,
+	};
+}
+
+
+export function logLogin() {
+	return {
+		type: ActionTypes.LOG_LOGIN,
+	};
+}
+
+
 
 export function toggleBuiltinQuotes() {
 	return dispatch => {

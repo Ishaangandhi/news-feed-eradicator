@@ -4,6 +4,7 @@ import {
 	toggleShowQuotes,
 	resetHiddenQuotes,
 	toggleBuiltinQuotes,
+	toggleShowCounts,
 } from '../store/actions';
 import { Store } from '../store';
 
@@ -47,6 +48,13 @@ const Settings = (store: Store) => {
 		!state.showQuotes
 	);
 
+	const fieldShowCounts = CheckboxField(
+		store,
+		state.showCounts,
+		'Show Site Visit Statistics',
+		toggleShowCounts()
+	);
+
 	const hiddenQuoteCount = state.hiddenBuiltinQuotes.length;
 	const hiddenQuoteReset = e => {
 		e.preventDefault();
@@ -74,6 +82,9 @@ const Settings = (store: Store) => {
 			fieldShowBuiltin,
 			hiddenQuoteCount > 0 ? hiddenQuotes : null,
 			h('p', [customQuotes()]),
+		]),
+		h('fieldset', [
+			h('legend', [fieldShowCounts]),
 		]),
 	]);
 };
